@@ -47,6 +47,9 @@ Route::get('cart/',[\App\Http\Controllers\Fontend\CartController::class,'showCar
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('order',[\App\Http\Controllers\Fontend\OrderController::class,'order'])->name('order');
+    Route::post('order',[\App\Http\Controllers\Fontend\OrderController::class,'orderSubmit']);
+
     Route::get('profile',[\App\Http\Controllers\Fontend\LoginController::class,'profile'])->name('profile');
 
     Route::post('profile',[\App\Http\Controllers\Fontend\LoginController::class,'profileEdit']);

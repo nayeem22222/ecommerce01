@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Fontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +40,8 @@ class LoginController extends Controller
 
     public function profile()
     {
-        return view('fontend.profile');
+        $orders = Order::where('user_id',auth()->user()->id)->with('orderDetails')->get();
+        return view('fontend.profile',compact('orders'));
     }
 
     public function profileEdit(Request $request)
